@@ -23,22 +23,7 @@ const Counter = () => {
     const count = useAppSelector(state => state.counter.value);
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        fetchPokemon()
-    }, [])
-    
-    const fetchPokemon = async () => {
-        const api = new PokemonClient()
-        
-        await api
-        .getPokemonById(1)
-        .then(pokemon => {
-            console.log(pokemon)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
+
 
 
     const CounterText = styled.Text<Props>`
@@ -58,7 +43,7 @@ const Counter = () => {
             <CounterText color='green'>{count}</CounterText>
             <Button title="Increase" onPress={() => dispatch(increment())} />
             <Button title="Decrease" onPress={() => dispatch(decrement())} />
-            <Button title="Increment 10" onPress={() => dispatch(incrementByAmount(10000))} />
+            <Button title="Increment 10" onPress={() => dispatch(incrementByAmount(10))} />
         </Wrapper>
     );
 };

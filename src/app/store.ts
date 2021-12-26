@@ -2,10 +2,12 @@
 /* eslint-disable prettier/prettier */
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counter-slice';
+import pokemonReducer from '../features/pokemons/pokemonSlice';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
+        pokemon: pokemonReducer,
     },
 });
 

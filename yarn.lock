@@ -1380,6 +1380,11 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
+"@types/react-devtools@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@types/react-devtools/-/react-devtools-3.6.0.tgz#662b1757600317f21fb338d33c10c7b68f962fd4"
+  integrity sha512-kEQi3iDGvabvrNoSSvmdcnuR9rQZLUgb+9UbDUcfKkKH5m/c663mXXwpPFTNCaFpVOBlO4yIoqft1hI/KARI2A==
+
 "@types/react-native@^0.65":
   version "0.65.17"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.65.17.tgz#6bdb4cb7e60bbc7eda880120e2a78a080373dd97"
