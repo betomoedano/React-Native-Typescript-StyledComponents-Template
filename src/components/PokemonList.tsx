@@ -10,7 +10,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setPokemons } from "../features/pokemons/pokemonSlice";
 import { increment, decrement, incrementByAmount, reset, decrementByAmount  } from "../features/counter/counter-slice";
-
+import { useColorScheme } from "react-native";
 import styled from "styled-components/native";
 import { PokemonClient } from "pokenode-ts";
 import Pokemon from "../models/Pokemon";
@@ -19,12 +19,15 @@ import Pokemon from "../models/Pokemon";
 interface Props {
     color: string;
     size?: string;
+    mt?: string;
 }
 
 const PokemonList = () => {
     const currentPokemon = useAppSelector(state => state.pokemon);
     const counter = useAppSelector(state => state.counter.value);
     const dispatch = useAppDispatch();
+    const isDarkMode = useColorScheme() === 'dark';
+
 
     useEffect(() => {
         fetchPokemon()
@@ -44,6 +47,7 @@ const PokemonList = () => {
                 image: pokemon?.sprites?.front_default?.toString(),
                 height: pokemon.height,
                 weight: pokemon.weight,
+                type: pokemon?.types[0]?.type?.name?.toString(),
             }
             dispatch(setPokemons(newPokemon))
         })
@@ -75,6 +79,7 @@ const PokemonList = () => {
         text-align: center;
         padding: 5px;
         color: ${props => props.color};
+        margin-top: ${props => props.mt || "0px"};
     `;
     const Wrapper = styled.View`
         justify-content: center;
@@ -82,7 +87,8 @@ const PokemonList = () => {
     `;
     const PokemonImage = styled.Image`
         width: 200px;
-        height: 200px;
+        height: 300px;
+        resize-mode: contain;
     `;
     const Button = styled.TouchableOpacity`
         background-color: #f0f0f0;
@@ -107,7 +113,7 @@ const PokemonList = () => {
         <Wrapper>
             {currentPokemon.image ? 
                 <>
-                <PokemonListText color="green">{currentPokemon.name}</PokemonListText>
+                <PokemonListText mt={'50px'} color={isDarkMode ? "#fff" : "green"}>{currentPokemon.name}</PokemonListText>
                 <PokemonImage source={{ uri: currentPokemon.image }} />
                 <DirectionRow>
                     <Wrapper>
@@ -117,6 +123,10 @@ const PokemonList = () => {
                     <Wrapper>
                         <InfoText color="orange">{currentPokemon.weight}</InfoText>
                         <InfoText color="orange">Weight</InfoText>
+                    </Wrapper>
+                    <Wrapper>
+                        <InfoText color="orange">{currentPokemon.type}</InfoText>
+                        <InfoText color="orange">Type</InfoText>
                     </Wrapper>
                 </DirectionRow>
                 <InfoText color="gray">Pokemon No. {counter}</InfoText>
